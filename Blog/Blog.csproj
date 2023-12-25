@@ -190,6 +190,7 @@
     <Compile Include="Models\articles.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogContentModel.cs" />
     <Compile Include="Models\comments.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
@@ -2003,6 +2004,7 @@
     <Content Include="Views\Shared\_ForwardUser.cshtml" />
     <Content Include="Views\General\BlogList.cshtml" />
     <Content Include="Views\General\BlogContent.cshtml" />
+    <Content Include="Views\Admin\BlogContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

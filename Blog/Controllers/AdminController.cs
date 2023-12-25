@@ -8,12 +8,12 @@ using PagedList.Mvc;
 using Npgsql;
 using PagedList;
 using System.Web.UI;
+using System.Web.Helpers;
 
 namespace Blog.Controllers
 {
     public class AdminController : Controller
     {
-        // private PersonalBlogEntities db = new PersonalBlogEntities();
         // GET: Admin
         public ActionResult Index()
         {
@@ -22,7 +22,36 @@ namespace Blog.Controllers
 
         public ActionResult PostBlog()
         {
+            ViewBag.ReleaseSuccessMessage = TempData["ReleaseSuccessMessage"] as string;
+            if (!string.IsNullOrEmpty(ViewBag.ReleaseSuccessMessage))
+                ViewBag.notice = "";
             return View();
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult PostBlog(string title, string summary, string summernote)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            NpgsqlConnection conn = db.GetConnection();
+            conn.Open();
+            string sql1 = $"SELECT 1 FROM articles WHERE title='{title}'";
+            NpgsqlCommand command = new NpgsqlCommand(sql1, conn);
+            Object exist = command.ExecuteScalar();
+
+            if (exist != null)
+            {
+                ViewBag.notice = "标题重复，请换一个!";
+                return View();
+            }
+
+            string sql2 = $"INSERT INTO articles (title, summary, content) VALUES ('{title}', '{summary}', '{summernote}');";
+            command = new NpgsqlCommand(sql2, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+
+            TempData["ReleaseSuccessMessage"] = "发布成功！";
+            return RedirectToAction("PostBlog");
         }
 
         public ActionResult UserManagement()
@@ -76,6 +105,28 @@ namespace Blog.Controllers
             conn.Close();
 
             return View(blogList);
+        }
+
+        public ActionResult BlogContent(int id)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            NpgsqlConnection conn = db.GetConnection();
+            conn.Open();
+            string sql1 = $"SELECT content FROM articles WHERE article_id={id}";
+            NpgsqlCommand command = new NpgsqlCommand(sql1, conn);
+            Object ctt = command.ExecuteScalar();
+            string sql2 = $"SELECT title FROM articles WHERE article_id={id}";
+            command = new NpgsqlCommand(sql2, conn);
+            Object ttl = command.ExecuteScalar();
+
+            var model = new BlogContentModel
+            {
+                content = ctt.ToString(),
+                title = ttl.ToString(),
+            };
+            conn.Close();
+
+            return View(model);
         }
 
         public ActionResult BlogDelete(int id)

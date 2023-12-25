@@ -43,5 +43,30 @@ namespace Blog.Controllers
 
             return View(blogList);
         }
+
+        public ActionResult BlogContent(int id)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            NpgsqlConnection conn = db.GetConnection();
+            conn.Open();
+            string sql1 = $"SELECT content FROM articles WHERE article_id={id}";
+            NpgsqlCommand command = new NpgsqlCommand(sql1, conn);
+            Object ctt = command.ExecuteScalar();
+            string sql2 = $"SELECT title FROM articles WHERE article_id={id}";
+            command = new NpgsqlCommand(sql2, conn);
+            Object ttl = command.ExecuteScalar();
+
+            var model = new BlogContentModel
+            {
+                content = ctt.ToString(),
+                title = ttl.ToString(),
+            };
+            string sql3 = $"UPDATE articles SET views_count=views_count+1 WHERE article_id={id}";
+            command = new NpgsqlCommand(sql3, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+
+            return View(model);
+        }
     }
 }

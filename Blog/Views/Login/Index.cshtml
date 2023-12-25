@@ -1,4 +1,10 @@
 ﻿<!DOCTYPE html>
+@if (!string.IsNullOrEmpty(ViewBag.notice))
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.notice
+    </div>
+}
 <html lang="fr">
 <head>
     <meta charset="utf-8">
@@ -35,22 +41,21 @@
                 <div class="checkbox" style="margin-bottom:15px"><label><input type="checkbox">记住我</label></div>
             </div>
             <div class="col-xs-offset-3 col-xs-6 text-center">
-                <button type="submit" class="btn btn-block btn-primary" style="margin-bottom: 10px">登录</button>
+                <button type="submit" class="btn btn-block btn-primary" style="margin-bottom:10px">登录</button>
                 <button type="button" class="btn btn-block btn-default" onclick="redirectToSignup()">注册</button>
             </div>
-            <h1 class="col-xs-12" id="notice" style="color:red;">@ViewBag.notice</h1>
         </form>
     </div>
     <script src="~/Scripts/jquery-3.7.1.min.js"></script>
     <script>
         function checkForm() {
-            var userName = $("#userName").val();
-            var pwd = $("#pwd").val();
-            if (userName.length == 0) {
+            var userName = $("#userName").length();
+            var pwd = $("#pwd").length();
+            if (userName == 0) {
                 $("#notice").text("用户名不能为空！");
                 return false;
             }
-            if (pwd.length == 0) {
+            if (pwd == 0) {
                 $("#notice").text("密码不能为空！");
                 return false;
             }

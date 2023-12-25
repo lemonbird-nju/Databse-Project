@@ -29,8 +29,7 @@
                                 <td>@blog.views_count</td>
                                 <td>@blog.comments_count</td>
                                 <td>
-                                    @Html.ActionLink("全文", "BlogDetails", new { id = blog.article_id }) |
-                                    @Html.ActionLink("编辑", "BlogEdit", new { id = blog.article_id }) |
+                                    <a href="/Admin/BlogContent/@blog.article_id">全文</a> |
                                     <a href="/Admin/BlogDelete/@blog.article_id" onclick="return confirm('是否删除博客《@blog.title》?')">删除</a>
                                 </td>
                             </tr>

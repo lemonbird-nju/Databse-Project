@@ -32,7 +32,6 @@ namespace Blog.Controllers
                 return View();
             }
 
-            // 去数据库查询用户
             DatabaseConnection db = new DatabaseConnection();
             NpgsqlConnection conn = db.GetConnection();
             conn.Open();
@@ -71,14 +70,12 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Signup(string username, string password, string email)
         {
-            // 去数据库查询用户
             DatabaseConnection db = new DatabaseConnection();
             NpgsqlConnection conn = db.GetConnection();
             conn.Open();
             string sql1 = $"SELECT 1 FROM users WHERE user_name='{username}'";
             NpgsqlCommand command = new NpgsqlCommand(sql1, conn);
             Object exist = command.ExecuteScalar();
-            conn.Close();
 
             if (exist != null)
             {
@@ -97,6 +94,7 @@ namespace Blog.Controllers
             string sql3 = $"INSERT INTO users (user_name, password, email) VALUES ('{username}', '{password}', '{email}');";
             command = new NpgsqlCommand(sql3, conn);
             command.ExecuteNonQuery();
+            conn.Close();
 
             TempData["SignupSuccessMessage"] = "注册成功！3秒后将跳转回登录界面";
             return RedirectToAction("Signup");

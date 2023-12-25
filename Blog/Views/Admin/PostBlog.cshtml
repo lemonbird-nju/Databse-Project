@@ -1,30 +1,73 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "发布博客";
     Layout = "~/Views/Shared/_BackAdmin.cshtml";
 }
 
+@if (!string.IsNullOrEmpty(ViewBag.ReleaseSuccessMessage))
+{
+    <div class="alert alert-success text-center">
+        @ViewBag.ReleaseSuccessMessage
+    </div>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = '/Admin/BlogManagement';
+        }, 2000);
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.notice))
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.notice
+    </div>
+}
 <div id="global">
     <div class="container-fluid">
         <div class="panel panel-default">
-            <div class="panel-heading">新的博客</div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>标题</label>
-                    <input type="text" class="form-control" placeholder="输入标题">
+            <form method="post" id="myForm" onsubmit="return checkForm()" action="/Admin/PostBlog">
+                <div class="panel-heading">新的博客</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" name="title" id="Title" class="form-control" placeholder="输入标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">摘要</label>
+                        <textarea id="Summary" name="summary" class="form-control" rows="4" placeholder="输入摘要"></textarea>
+                    </div>
+                    <label>内容</label>
+                    <textarea id="summernote" name="summernote"></textarea>
+                    <div class="form-group text-right" style="margin-top:20px">
+                        <!--<button type="submit" class="btn btn-default">暂存</button>-->
+                        <button type="submit" class="btn btn-primary">发布</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="summary">摘要</label>
-                    <textarea id="summary" class="form-control" rows="4" placeholder="输入摘要"></textarea>
-                </div>
-                <label>内容</label>
-                <div id="summernote"></div>
-                <div class="form-group text-right" style="margin-top:20px">
-                    <button type="submit" class="btn btn-default">暂存</button>
-                    <button type="submit" class="btn btn-primary">发布</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+<script>
+    function checkForm() {
+        var Title = $("#Title").val();
+        var Summary = $("#Summary").val();
+
+        if (Title.length == 0) {
+            $("#notice").text("标题不能为空！");
+            return false;
+        }
+        if (Summary.length == 0) {
+            $("#notice").text("摘要不能为空！");
+            return false;
+        }
+
+        return true;
+    }
+    $(document).ready(function () {
+        $('#myForm').submit(function () {
+            var content = $('#summernote').summernote('code');
+            $('#summernote').val(content);
+            return true;
+        });
+    });
+</script>
 
