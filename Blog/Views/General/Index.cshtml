@@ -1,65 +1,98 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "首页";
     Layout = "~/Views/Shared/_ForwardUser.cshtml";
 }
 
-<<div class="container-fluid cm-container-white">
+<div class="container-fluid cm-container-white">
     <h2 style="margin-top:0;">Lemonbird的个人博客</h2>
-    <p>本博客基于ASP.NET MVC和PostgreSQL开发</p>
+    <p>本博客基于ASP.NET MVC，PostgreSQL和Clearmin开发</p>
 </div>
 
 <div class="container-fluid">
     <div class="row cm-fix-height">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Adresses</div>
+                <div class="panel-heading">联系我</div>
                 <div class="panel-body">
                     <address>
-                        <strong>Twitter, Inc.</strong>
+                        <strong>QQ</strong>
                         <br>
-                        795 Folsom Ave, Suite 600
+                        1274124949
                         <br>
-                        San Francisco, CA 94107
+                        <strong>Github</strong>
                         <br>
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                    <address style="margin:0">
-                        <strong>Full Name</strong>
+                        lemonbird-nju
                         <br>
-                        <a href="mailto:#">first.last@example.com</a>
+                        <strong>地址</strong>
+                        <br>
+                        江苏省南京市栖霞区仙林大道163号
+                        <br>
+                        南京大学仙林校区
+                        <br>
+                        <strong>邮箱</strong>
+                        <br>
+                        <a href="mailto:#">211830009@smail.nju.edu.cn</a>
                     </address>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Blockquotes</div>
-                <div class="panel-body">
-                    <blockquote style="margin:0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Lists</div>
+                <div class="panel-heading">最近更新</div>
                 <div class="panel-body">
                     <ul style="margin:0">
-                        <li>Facilisis in pretium</li>
-                        <li>
-                            Nulla volutpat
-                            <ul>
-                                <li>Purus sodales</li>
-                                <li>Vestibulum</li>
-                                <li>Ac tristique</li>
-                            </ul>
-                        </li>
-                        <li>Aenean sit amet</li>
-                        <li>Eget porttitor lorem</li>
+                        <li>更新《PA 4-1 异常和中断的响应》</li>
+                        <li>对《PA 3-2 保护模式》进行了一部分勘误</li>
+                        <li>调整了阅读界面的布局</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">色彩设置</div>
+        <div class="panel-body" id="demo-buttons">
+            <p>点击下面的按钮以改变导航栏颜色：</p>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-primary" data-switch-color="primary">蓝色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-success" data-switch-color="success">鲜绿</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-info" data-switch-color="info">亮蓝</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-warning" data-switch-color="warning">橙色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-danger" data-switch-color="danger">红色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-gray" data-switch-color="gray">灰色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-yellow" data-switch-color="yellow">黄色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-purple" data-switch-color="purple">紫色</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-turquoise" data-switch-color="turquoise">绿宝石</button>
+                    <br>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <button class="btn btn-block btn-midnight" data-switch-color="midnight">午夜</button>
+                    <br>
                 </div>
             </div>
         </div>
