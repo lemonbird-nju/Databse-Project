@@ -1,0 +1,32 @@
+﻿@model List<Blog.Models.articles>
+
+@{
+    ViewBag.Title = "博客列表";
+    Layout = "~/Views/Shared/_ForwardUser.cshtml";
+}
+
+<div id="global">
+    <div class="container-fluid">
+        <div class="tab-content">
+            @foreach (var blog in Model)
+            {
+                <a href="/General/BlogContent/@blog.article_id" class="panel panel-default thumbnail cm-thumbnail">
+                    <div class="panel-body">
+                        <h1 style="margin-top: 0;">
+                            <strong>
+                                @blog.title
+                            </strong>
+                        </h1>
+                        <strong>发布时间：</strong>@blog.created_at
+                        <h4>摘要</h4>
+                        <p>
+                            @blog.summary
+                        </p>
+                        <p class="fa fa-eye"> 浏览：@blog.views_count &nbsp;&nbsp;&nbsp;</p>
+                        <p class="fa fa-comment"> 评论：@blog.comments_count</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

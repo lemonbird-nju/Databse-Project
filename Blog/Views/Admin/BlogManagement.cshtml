@@ -1,0 +1,43 @@
+﻿@model List<Blog.Models.articles>
+
+@{
+    ViewBag.Title = "博客管理";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+<div id="global">
+    <div class="container-fluid">
+        <div class="row cm-fix-height">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2>博客管理</h2></div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>发布时间</th>
+                                <th>浏览量</th>
+                                <th>评论量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        @foreach (var blog in Model)
+                        {
+                            <tr>
+                                <td>@blog.title</td>
+                                <td>@blog.created_at</td>
+                                <td>@blog.views_count</td>
+                                <td>@blog.comments_count</td>
+                                <td>
+                                    @Html.ActionLink("全文", "BlogDetails", new { id = blog.article_id }) |
+                                    @Html.ActionLink("编辑", "BlogEdit", new { id = blog.article_id }) |
+                                    <a href="/Admin/BlogDelete/@blog.article_id" onclick="return confirm('是否删除博客《@blog.title》?')">删除</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

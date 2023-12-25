@@ -1,0 +1,35 @@
+﻿@model List<Blog.Models.users>
+
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+<div id="global">
+    <div class="container-fluid">
+        <div class="row cm-fix-height">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2>用户管理</h2></div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>邮箱</th>
+                                <th>权限信息</th>
+                            </tr>
+                        </thead>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.user_name</td>
+                                <td>@user.email</td>
+                                <td>@(user.is_admin == true ? "管理员" : "普通用户")</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

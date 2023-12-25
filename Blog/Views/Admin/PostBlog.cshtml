@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "发布博客";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+<div id="global">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">新的博客</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="form-control" placeholder="输入标题">
+                </div>
+                <div class="form-group">
+                    <label for="summary">摘要</label>
+                    <textarea id="summary" class="form-control" rows="4" placeholder="输入摘要"></textarea>
+                </div>
+                <label>内容</label>
+                <div id="summernote"></div>
+                <div class="form-group text-right" style="margin-top:20px">
+                    <button type="submit" class="btn btn-default">暂存</button>
+                    <button type="submit" class="btn btn-primary">发布</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
