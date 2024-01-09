@@ -11,5 +11,5 @@ Based on C#, ASP.NET MVC & PostgreSQL.
 * Browse blogs
 * Leave comments (to be completed)
 ## Interface Appearance
-![]{./Pic/screenshot1.png}
-![]{./Pic/screenshot2.png}
+![](./Pic/screenshot1.png)
+![](./Pic/screenshot2.png)
